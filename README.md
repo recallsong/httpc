@@ -3,7 +3,7 @@ httpc这是一个发起http请求的客户端库。
 
 它具有的特色包括：简单易用、易于扩展、支持链式调用、支持多种请求和响应格式的处理等。
 
-特别适合用来调用restfull风格的接口。
+特别适合用来调用RESTful风格的接口。
     
 # 下载
     go get github.com/recallsong/httpc
