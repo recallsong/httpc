@@ -23,6 +23,7 @@ import (
 type ReqBodyReader func(req *http.Request, typ reflect.Type, data interface{}) (io.ReadCloser, error)
 
 var (
+	// ErrReqBodyType 请求的Body数据类型错误
 	ErrReqBodyType = errors.New("invalid request body type")
 )
 

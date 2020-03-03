@@ -94,7 +94,8 @@ func (c *HttpC) SetContext(context *Context) *HttpC {
 
 // Path 追加url路径
 func (c *HttpC) Path(path string) *HttpC {
-	if c.URL != "" && !strings.HasPrefix(path, "http://") && !strings.HasPrefix(path, "https://") {
+	if c.URL != "" &&
+		!strings.HasPrefix(path, "http://") && !strings.HasPrefix(path, "https://") || !strings.HasPrefix(path, "unix://") {
 		if strings.HasSuffix(c.URL, "/") {
 			if strings.HasPrefix(path, "/") {
 				c.URL += path[0:]

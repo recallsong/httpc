@@ -13,12 +13,13 @@ import (
 	"time"
 )
 
+// DefaultContext 默认的请求上下文
 var DefaultContext = NewContext()
 
 // Callback 以回调方式通知内部所发生的事件
 type Callback func(c *HttpC, args ...interface{}) error
 
-// BodyReaders
+// BodyReaders 请求体读取器
 type BodyReaders struct {
 	ReqBodyTypeReaders   map[reflect.Type]ReqBodyReader  // 根据类型获取reader
 	ReqBodyMediaReaders  map[string]ReqBodyReader        // 根据MediaType获取reader
@@ -232,4 +233,19 @@ func (c *Context) SetCheckRedirect(cr func(req *http.Request, via []*http.Reques
 func (c *Context) SetProxy(proxy func(*http.Request) (*url.URL, error)) *Context {
 	c.getTransport().Proxy = proxy
 	return c
+}
+
+// Copy 复制一份
+func (c *Context) Copy() *Context {
+	return &Context{
+		Client:        c.Client,
+		BodyReaders:   c.BodyReaders,
+		CbBeforeSend:  c.CbBeforeSend,
+		CbAfterSend:   c.CbAfterSend,
+		CbOnError:     c.CbOnError,
+		CbOnRetring:   c.CbOnRetring,
+		Retries:       c.Retries,
+		RetryInterval: c.RetryInterval,
+		RetryFactor:   c.RetryFactor,
+	}
 }

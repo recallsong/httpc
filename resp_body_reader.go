@@ -19,6 +19,7 @@ import (
 type RespBodyReader func(resp *http.Response, reader io.ReadCloser, typ reflect.Type, out interface{}) error
 
 var (
+	// ErrRespOutType 接收响应Body的数据类型错误
 	ErrRespOutType = errors.New("invalid response output type")
 )
 
